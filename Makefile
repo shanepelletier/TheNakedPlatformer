@@ -1,2 +1,2 @@
 all:
-	g++ -o bin/TheNakedPlatformer main.cpp -l SDL -l SDL_image 
+	g++ -o TheNakedPlatformer main.cpp -l SDL -l SDL_image 
