@@ -31,6 +31,8 @@ int main(int argc, char* argv[])
 	screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE);
 	SDL_WM_SetCaption("The Naked Platformer", NULL);
 	playerSurface = loadImage("player.png");
+	int x = 0;
+	int y = 0;
 	bool quit = false;
 	SDL_Event event;
 	while (!quit)
@@ -42,8 +44,25 @@ int main(int argc, char* argv[])
 				quit = true;
 			}
 		}
+		Uint8* keystates = SDL_GetKeyState(NULL);
+		if (keystates[SDLK_UP])
+		{
+			y--;
+		}
+		else if (keystates[SDLK_DOWN])
+		{
+			y++;
+		}
+		else if (keystates[SDLK_LEFT])
+		{
+			x--;
+		}
+		else if (keystates[SDLK_RIGHT])
+		{
+			x++;
+	        }
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
-		applySurface(0, 0, playerSurface, screen);
+		applySurface(x, y, playerSurface, screen);
 		SDL_Flip(screen);
 	}
 	SDL_FreeSurface(playerSurface);
